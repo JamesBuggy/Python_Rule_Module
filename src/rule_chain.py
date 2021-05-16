@@ -1,11 +1,12 @@
+from typing import Any, Type
 from .models.rule_result import RuleResult
 from .rules.base_rule import BaseRule
-from typing import Type
 
 class RuleChain:
 
-    def __init__(self):
+    def __init__(self, **inputs: Any):
         self.is_successful = True
+        self.inputs: dict[str, Any] = inputs
 
     def execute(self, rule: Type[BaseRule]) -> 'RuleChain':
         self._execute(rule)
@@ -22,5 +23,5 @@ class RuleChain:
         return self
 
     def _execute(self, rule: Type[BaseRule]) -> None:
-        result: RuleResult = rule().execute()
+        result: RuleResult = rule(**self.inputs).execute()
         self.is_successful = result.is_successful
