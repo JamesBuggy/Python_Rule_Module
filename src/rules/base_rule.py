@@ -3,7 +3,7 @@ from ..models.rule_result import RuleResult
 
 class BaseRule:
 
-    required_inputs: 'list[str]'
+    required_inputs: list[str]
 
     def __init__(self, **inputs: Any) -> None:
         self._validateRequiredInputs(**inputs)

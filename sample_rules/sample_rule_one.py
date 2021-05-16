@@ -3,7 +3,7 @@ from src import RuleResult, BaseRule
 
 class SampleRuleOne(BaseRule):
 
-    required_inputs: 'list[str]' = []
+    required_inputs: list[str] = []
 
     def __init__(self, **inputs: Any) -> None:
         super().__init__(**inputs)
