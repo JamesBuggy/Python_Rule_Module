@@ -26,7 +26,7 @@ class RuleChain:
         return self
 
     def _execute_rule(self, rule: Type[BaseRule], update_chain_status: bool = True) -> None:
-        rule_inputs = self.inputs | self.outputs
+        rule_inputs: dict[str, Any] = { required_input: (self.inputs | self.outputs)[required_input] for required_input in rule.required_inputs }
         result: RuleResult = rule(**rule_inputs).execute()
         self.outputs = self.outputs | result.outputs
         self.errors = self._combine_errors(self.errors, result.errors)
