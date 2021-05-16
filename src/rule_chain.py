@@ -1,11 +1,16 @@
-from src.rules.base_rule import BaseRule
+from .models.rule_result import RuleResult
+from .rules.base_rule import BaseRule
 from typing import Type
 
 class RuleChain:
 
     def __init__(self):
-        pass
+        self.is_successful = True
 
     def execute(self, rule: Type[BaseRule]) -> 'RuleChain':
-        rule().execute()
+        self._execute(rule)
         return self
+
+    def _execute(self, rule: Type[BaseRule]) -> None:
+        result: RuleResult = rule().execute()
+        self.is_successful = result.is_successful
