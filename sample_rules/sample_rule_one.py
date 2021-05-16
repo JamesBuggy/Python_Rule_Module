@@ -8,6 +8,5 @@ class SampleRuleOne(BaseRule):
     def __init__(self, **inputs: Any) -> None:
         super().__init__(**inputs)
 
-    def execute(self) -> RuleResult:
-        print('sample rule one', self.inputs)
+    def _execute(self) -> RuleResult:
         return RuleResult(True)

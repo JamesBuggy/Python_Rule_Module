@@ -6,7 +6,7 @@ from .rules.base_rule import BaseRule
 class RuleChain:
 
     def __init__(self, **inputs: Any) -> None:
-        self.is_successful = True
+        self.is_successful: bool = True
         self.inputs: dict[str, Any] = inputs
         self.outputs: dict[str, Any] = dict()
         self.errors: dict[RuleErrorType, list[str]] = dict()
