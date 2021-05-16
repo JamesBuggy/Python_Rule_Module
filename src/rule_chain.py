@@ -7,6 +7,7 @@ class RuleChain:
     def __init__(self, **inputs: Any):
         self.is_successful = True
         self.inputs: dict[str, Any] = inputs
+        self.outputs: dict[str, Any] = dict()
 
     def execute(self, rule: Type[BaseRule]) -> 'RuleChain':
         self._execute(rule)
@@ -23,5 +24,7 @@ class RuleChain:
         return self
 
     def _execute(self, rule: Type[BaseRule]) -> None:
-        result: RuleResult = rule(**self.inputs).execute()
+        rule_inputs = {**self.inputs, **self.outputs}
+        result: RuleResult = rule(**rule_inputs).execute()
         self.is_successful = result.is_successful
+        self.outputs = {**self.outputs, **result.outputs}
