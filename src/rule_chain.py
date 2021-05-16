@@ -4,7 +4,7 @@ from .rules.base_rule import BaseRule
 
 class RuleChain:
 
-    def __init__(self, **inputs: Any):
+    def __init__(self, **inputs: Any) -> None:
         self.is_successful = True
         self.inputs: dict[str, Any] = inputs
         self.outputs: dict[str, Any] = dict()

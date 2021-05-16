@@ -2,6 +2,6 @@ from typing import Any
 
 class RuleResult:
 
-    def __init__(self, is_successful: bool, **outputs: Any):
+    def __init__(self, is_successful: bool, **outputs: Any) -> None:
         self.is_successful = is_successful
         self.outputs: dict[str, Any] = outputs
