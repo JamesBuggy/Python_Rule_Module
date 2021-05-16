@@ -1,4 +1,4 @@
-from src import RuleChain
+from rules_module import RuleChain
 from sample_rules.sample_rule_one import SampleRuleOne
 from sample_rules.sample_rule_two import SampleRuleTwo
 

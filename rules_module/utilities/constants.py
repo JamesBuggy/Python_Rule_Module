@@ -1,0 +1,1 @@
+rule_in_out_errors: str = 'errors'

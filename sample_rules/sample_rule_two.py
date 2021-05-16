@@ -1,5 +1,5 @@
 from typing import Any
-from src import RuleResult, BaseRule
+from rules_module import RuleResult, BaseRule
 
 class SampleRuleTwo(BaseRule):
 

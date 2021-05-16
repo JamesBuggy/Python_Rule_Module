@@ -2,6 +2,7 @@ from typing import Any, Type
 from .models.rule_result import RuleResult
 from .enums.rule_error_type import RuleErrorType
 from .rules.base_rule import BaseRule
+from .utilities import constants
 
 class RuleChain:
 
@@ -30,7 +31,7 @@ class RuleChain:
         result: RuleResult = rule(**rule_inputs).execute()
         self.outputs = self.outputs | result.outputs
         self.errors = self._combine_errors(self.errors, result.errors)
-        self.outputs['errors'] = self.errors
+        self.outputs[constants.rule_in_out_errors] = self.errors
         if update_chain_status:
             self.is_successful = result.is_successful
 
