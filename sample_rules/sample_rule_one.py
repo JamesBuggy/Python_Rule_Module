@@ -1,5 +1,5 @@
 from typing import Any
-from rules_module import RuleResult, BaseRule
+from rules_module import BaseRule
 
 class SampleRuleOne(BaseRule):
 
@@ -8,5 +8,5 @@ class SampleRuleOne(BaseRule):
     def __init__(self, **inputs: Any) -> None:
         super().__init__(**inputs)
 
-    def _execute(self) -> RuleResult:
-        return RuleResult(True)
+    def _execute(self) -> None:
+        self.outputs['example_output_1'] = 'example_output_value'
