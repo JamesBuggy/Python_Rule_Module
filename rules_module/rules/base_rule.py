@@ -15,7 +15,6 @@ class BaseRule:
 
     def execute(self) -> RuleResult:
         print(f'{self.__class__.__name__} - Starting with inputs: {self.inputs}')
-        result: RuleResult
         try:
             self._execute()
         except Exception as e:
