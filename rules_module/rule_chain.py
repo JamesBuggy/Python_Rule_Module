@@ -28,11 +28,16 @@ class RuleChain:
 
     def _execute_rule(self, rule: Type[BaseRule], update_chain_status: bool = True) -> None:
         rule_inputs: dict[str, Any] = self.inputs | self.outputs
-        rule_inputs = { required_input: rule_inputs[required_input] for required_input in rule.required_inputs if required_input in rule_inputs }
+        required_rule_inputs = { required_input: rule_inputs[required_input] for required_input in rule.required_inputs if required_input in rule_inputs}
+        optional_rule_inputs = { optional_input: rule_inputs[optional_input] for optional_input in rule.optional_inputs if optional_input in rule_inputs}
+        rule_inputs = required_rule_inputs | optional_rule_inputs
+        
         result: RuleResult = rule(**rule_inputs).execute()
+        
         self.outputs = self.outputs | result.outputs
         self.errors = self._combine_errors(self.errors, result.errors)
         self.outputs[constants.rule_in_out_errors] = self.errors
+        
         if update_chain_status:
             self.is_successful = result.is_successful
 

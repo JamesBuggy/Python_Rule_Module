@@ -6,6 +6,7 @@ from ..enums.rule_error import RuleError
 class BaseRule:
 
     required_inputs: list[str]
+    optional_inputs: list[str]
 
     def __init__(self, **inputs: Any) -> None:
         self._validateRequiredInputs(**inputs)

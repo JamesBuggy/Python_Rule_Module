@@ -4,6 +4,7 @@ from rules_module import BaseRule
 class SampleRuleTwo(BaseRule):
 
     required_inputs: list[str] = ['example_output_1']
+    optional_inputs: list[str] = []
 
     def __init__(self, **inputs: Any) -> None:
         super().__init__(**inputs)
